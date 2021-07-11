@@ -1,7 +1,6 @@
 <template>
   <div id="tempvarchart">
-    <p>Temperature Information:</p>
-    {{ tempVar }}
+    {{ tempVar.tempToday }}
   </div>
 </template>
 
