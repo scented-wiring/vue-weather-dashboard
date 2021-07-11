@@ -2,7 +2,7 @@
   <div id="pagecontent">
     <p>This child components of Content.vue are:</p>
     <ul>
-      <li v-for="child in childComponents">{{ child }}</li>
+      <li v-for="child in childComponents" :key="child">{{ child }}</li>
     </ul>
     {{ weather_data }}
     <temp-var-chart :tempVar="tempVar"></temp-var-chart>
