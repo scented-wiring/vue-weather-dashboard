@@ -130,6 +130,7 @@ export default {
       }
       return str.join(" ");
     },
+
     formatPossibility: function(str) {
       str = str.toLowerCase().split("-");
       for (var i = 0; i < str.length; i++) {
@@ -137,6 +138,7 @@ export default {
       }
       return str.join(" ");
     },
+
     unixToHuman: function(timezone, timestamp) {
       /* READ THIS BEFORE JUDGING & DEBUGGING
      For any location beyond the arctic circle and the
@@ -163,18 +165,22 @@ export default {
         onlyMonthDate: monthDate
       };
     },
+
     fahToCel: function(tempInFahrenheit) {
       var tempInCelcius = Math.round((5 / 9) * (tempInFahrenheit - 32));
       return tempInCelcius;
     },
+
     milibarToKiloPascal: function(pressureInMilibar) {
       var pressureInKPA = pressureInMilibar * 0.1;
       return Math.round(pressureInKPA);
     },
+
     mileToKilometer: function(miles) {
       var kilometer = miles * 1.60934;
       return Math.round(kilometer);
     },
+
     deriveWindDir: function(windDir) {
       var wind_directions_array = [
         { minVal: 0, maxVal: 30, direction: "N" },
@@ -204,6 +210,36 @@ export default {
         }
       }
       return wind_direction;
+    },
+
+    makeInputEmpty: function() {
+      this.$refs.input.value = "";
+    },
+
+    makeTempVarTodayEmpty: function() {
+      this.tempVar.tempToday = [];
+    },
+
+    detectEnterKeyPress: function() {
+      var input = this.$refs.input;
+      input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        var enterKeyCode = 13;
+        if (event.keyCode === enterKeyCode) {
+          this.setHitEnterKeyTrue();
+        }
+      });
+    },
+
+    locationEntered: function() {
+      var input = this.$refs.input;
+      if (input.value === "") {
+        this.location = "New York";
+      } else {
+        this.location = this.convertToTitleCase(input.value);
+      }
+      this.makeInputEmpty();
+      this.makeTempVarTodayEmpty();
     }
   },
   computed: {}
